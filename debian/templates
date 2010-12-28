@@ -255,13 +255,13 @@ Type: boolean
 Default: false
 Description: Do you accept the EULA license terms?
  In order to install this package, you must accept the license terms, the
- "TrueType core fonts for the Web EULA ". Not accepting will cancel the
+ "Freescale IMX Firmware EULA ". Not accepting will cancel the
  installation.
 
 Template: firmware-imx/error-firmware-imx-eula
 Type: error
-Description: Declined "TrueType core fonts for the Web EULA "
- If you do not agree to the "TrueType core fonts for the Web EULA " license
+Description: Declined "Freescale IMX Firmware EULA "
+ If you do not agree to the "Freescale IMX Firmware EULA " license
  terms you cannot install this software.
  .
  The installation of this package will be canceled.
