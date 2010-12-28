@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+. /usr/share/debconf/confmodule
+
+# if the license was not accepted, ensure the fonts are removed
+# and add README with helpful information
+FIRMWAREDIR=/lib/firmware/vpu
+license=firmware-imx-eula
+db_get firmware-imx/accepted-$license
+if [ "$RET" != "true" ]; then
+    echo "user did not accept the $license license" >&2
+    rm -f $FIRMWAREDIR/*.ttf
+    cat > $FIRMWAREDIR/README <<EOF 
+License refused.
+
+Please reinstall the firmware-imx package, e.g. via
+ apt-get install --reinstall firmware-imx
+to get prompted for the license again.
+EOF
+    exit 0
+else
+    rm -f $FIRMWAREDIR/README
+fi
+

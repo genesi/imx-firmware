@@ -1,0 +1,5 @@
+firmware-imx (10.10.00) maverick; urgency=low
+
+  * Initial release. Firmware for the vpu unit on iMX51
+
+ -- Steev Klimaszewski <steev@genesi-usa.com>  Wed, 10 Nov 2010 22:43:08 -0600

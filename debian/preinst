@@ -1,0 +1,85 @@
+#!/bin/sh -e
+
+. /usr/share/debconf/confmodule
+db_version 2.0
+db_capb backup
+
+license=firmware-imx-eula
+
+errmsg()
+{
+    echo >&2 ''
+    echo >&2 "$@"
+    echo >&2 "try 'dpkg-reconfigure debconf' to select a frontend other than noninteractive"
+    echo >&2 ''
+}
+
+echo "getting debconf variable..."
+
+db_get firmware-imx/accepted-$license
+if [ "$RET" = "true" ]; then
+    echo "$license license has already been accepted" >&2
+    exit 0
+else
+    # show license again
+    echo "showing license again..."
+    db_fset firmware-imx/present-$license seen false
+fi
+
+echo "finding backup capability per debconf-devel..."
+# facilitate backup capability per debconf-devel(7)
+STATE=1
+while true; do
+    case "$STATE" in
+    0)  # ensure going back from license presentment is harmless
+        STATE=1
+        continue
+        ;;
+    1)  # present license
+        echo "presenting license..."
+        db_fset firmware-imx/present-$license seen false
+        if ! db_input critical firmware-imx/present-$license ; then
+            errmsg "$license license could not be presented"
+            exit 0
+        fi
+        echo "accepted license..."
+        db_fset firmware-imx/accepted-$license seen false
+        if ! db_input critical firmware-imx/accepted-$license ; then
+            errmsg "$license agree question could not be asked"
+            exit 0
+        fi
+        ;;
+    2)  # determine users' choice
+        echo "determine users' choice..."
+        db_get firmware-imx/accepted-$license
+        if [ "$RET" = "true" ]; then
+            # license accepted
+            exit 0
+        fi
+        echo "error on decline license..."
+        # error on decline license (give user chance to back up)
+        db_input critical firmware-imx/error-$license
+        ;;
+    3)  # user has confirmed declining license
+        echo "user did not accept the $license license" >&2
+        exit 0
+        ;;
+    *)  # unknown state
+        echo "$license license state unknown: $STATE" >&2
+        exit 2
+        ;;
+    esac
+    echo "running db_go..."
+    if db_go; then
+        STATE=$(($STATE + 1))
+    else
+        STATE=$(($STATE - 1))
+    fi
+    echo "STATE = $STATE"
+done
+
+#DEBHELPER#
+
+# proper exit (0 or 1) above
+errmsg "$license license could not be presented / was not accepted"
+exit 2
