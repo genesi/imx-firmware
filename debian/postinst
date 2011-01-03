@@ -6,16 +6,16 @@ set -e
 # if the license was not accepted, ensure the fonts are removed
 # and add README with helpful information
 FIRMWAREDIR=/lib/firmware/vpu
-license=firmware-imx-eula
-db_get firmware-imx/accepted-$license
+license=imx-firmware-eula
+db_get imx-firmware/accepted-$license
 if [ "$RET" != "true" ]; then
     echo "user did not accept the $license license" >&2
     rm -f $FIRMWAREDIR/*.ttf
     cat > $FIRMWAREDIR/README <<EOF 
 License refused.
 
-Please reinstall the firmware-imx package, e.g. via
- apt-get install --reinstall firmware-imx
+Please reinstall the imx-firmware package, e.g. via
+ apt-get install --reinstall imx-firmware
 to get prompted for the license again.
 EOF
     exit 0

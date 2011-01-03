@@ -1,4 +1,4 @@
-Template: firmware-imx/present-firmware-imx-eula
+Template: imx-firmware/present-imx-firmware-eula
 Type: note 
 Description: Freescale Firmware EULA
  IMPORTANT. Read the following Freescale Software License Agreement
@@ -250,7 +250,7 @@ Description: Freescale Firmware EULA
  Coding Technologies, AB ("CTS").  You only have the right to use the
  CTS software in connection with the Freescale System.
 
-Template: firmware-imx/accepted-firmware-imx-eula
+Template: imx-firmware/accepted-imx-firmware-eula
 Type: boolean
 Default: false
 Description: Do you accept the EULA license terms?
@@ -258,7 +258,7 @@ Description: Do you accept the EULA license terms?
  "Freescale IMX Firmware EULA ". Not accepting will cancel the
  installation.
 
-Template: firmware-imx/error-firmware-imx-eula
+Template: imx-firmware/error-imx-firmware-eula
 Type: error
 Description: Declined "Freescale IMX Firmware EULA "
  If you do not agree to the "Freescale IMX Firmware EULA " license

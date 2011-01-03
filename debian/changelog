@@ -1,4 +1,4 @@
-firmware-imx (10.10.00) maverick; urgency=low
+imx-firmware (10.10.00) maverick; urgency=low
 
   * Initial release. Firmware for the vpu unit on iMX51
 

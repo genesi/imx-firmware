@@ -4,7 +4,7 @@
 db_version 2.0
 db_capb backup
 
-license=firmware-imx-eula
+license=imx-firmware-eula
 
 errmsg()
 {
@@ -16,14 +16,14 @@ errmsg()
 
 echo "getting debconf variable..."
 
-db_get firmware-imx/accepted-$license
+db_get imx-firmware/accepted-$license
 if [ "$RET" = "true" ]; then
     echo "$license license has already been accepted" >&2
     exit 0
 else
     # show license again
     echo "showing license again..."
-    db_fset firmware-imx/present-$license seen false
+    db_fset imx-firmware/present-$license seen false
 fi
 
 echo "finding backup capability per debconf-devel..."
@@ -37,28 +37,28 @@ while true; do
         ;;
     1)  # present license
         echo "presenting license..."
-        db_fset firmware-imx/present-$license seen false
-        if ! db_input critical firmware-imx/present-$license ; then
+        db_fset imx-firmware/present-$license seen false
+        if ! db_input critical imx-firmware/present-$license ; then
             errmsg "$license license could not be presented"
             exit 0
         fi
         echo "accepted license..."
-        db_fset firmware-imx/accepted-$license seen false
-        if ! db_input critical firmware-imx/accepted-$license ; then
+        db_fset imx-firmware/accepted-$license seen false
+        if ! db_input critical imx-firmware/accepted-$license ; then
             errmsg "$license agree question could not be asked"
             exit 0
         fi
         ;;
     2)  # determine users' choice
         echo "determine users' choice..."
-        db_get firmware-imx/accepted-$license
+        db_get imx-firmware/accepted-$license
         if [ "$RET" = "true" ]; then
             # license accepted
             exit 0
         fi
         echo "error on decline license..."
         # error on decline license (give user chance to back up)
-        db_input critical firmware-imx/error-$license
+        db_input critical imx-firmware/error-$license
         ;;
     3)  # user has confirmed declining license
         echo "user did not accept the $license license" >&2
