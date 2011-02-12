@@ -2,7 +2,6 @@
 
 build: build-stamp
 build-stamp:
-	make all
 	touch $@
 
 clean:
