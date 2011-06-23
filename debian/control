@@ -10,6 +10,6 @@ Package: imx-firmware
 Section: kernel
 Priority: extra
 Architecture: armel armhf
-Depends: ${misc:Depends}, imx-firmware-eula
+Depends: ${misc:Depends}, imx-freescale-eula
 Description: Firmware binary package.
  Firmware required for the vpu unit on iMX51.
