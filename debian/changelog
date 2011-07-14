@@ -1,3 +1,9 @@
+imx-firmware (2.0.0-20110714) maverick; urgency=low
+
+  * Bump
+
+ -- Matt Sealey <matt@genesi-usa.com>  Thu, 14 Jul 2011 21:42:42 -0600
+
 imx-firmware (1.2.0-20110628) maverick; urgency=low
 
   * 11.05 BSP. Firmware for the vpu unit on iMX51 and iMX53
