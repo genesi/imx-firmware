@@ -1,9 +1,3 @@
-imx-firmware (2.1.0-20110909) maverick; urgency=low
-
-  * 11.08 BSP. Firmware for VPU for MX5/MX6, SDMA for MX5
-
- -- Matt Sealey <matt@genesi-usa.com>  Fri, 09 Sep 2011 14:21:43 -0600
-
 imx-firmware (2.0.0-20110714) maverick; urgency=low
 
   * Bump
