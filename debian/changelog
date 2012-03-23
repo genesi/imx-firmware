@@ -1,3 +1,9 @@
+imx-firmware (2.0.0-201203) unstable; urgency=low
+
+  * Release for Debian unstable 
+
+ -- Konstantinos Margaritis <markos@genesi-usa.com>  Fri, 23 Mar 2012 10:18:57 +0200
+
 imx-firmware (2.0.0-20110714) maverick; urgency=low
 
   * Bump
